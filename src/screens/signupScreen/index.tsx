@@ -16,7 +16,7 @@ interface State {
   rememberMe: boolean;
 }
 
-export default class LoginScreen extends Component<Props> {
+export default class SignupScreen extends Component<Props> {
   state: State = {
     rememberMe: false
   };
@@ -25,13 +25,12 @@ export default class LoginScreen extends Component<Props> {
 
   render() {
     const { rememberMe } = this.state;
-    const { navigate } = this.props.navigation;
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.container}>
-          <CustomText text='Welcome Back!' bold />
-          <CustomText text='Login to your account' style={styles.logInToYourAccount} />
+          <CustomText text='Create your Account' bold />
+          <CustomText text="It's free and easy to set up!" style={styles.logInToYourAccount} />
           <Form style={styles.formWrapper}>
             <Item
               floatingLabel
@@ -44,31 +43,19 @@ export default class LoginScreen extends Component<Props> {
             </Item>
 
             <Item floatingLabel underline style={styles.formItem}>
+              <Label>Email</Label>
+              <Input style={styles.formInput} />
+            </Item>
+
+            <Item floatingLabel underline style={styles.formItem}>
               <Label>Password</Label>
               <Input style={styles.formInput} />
             </Item>
           </Form>
 
-          <View style={styles.forgotPasswordRow}>
-            <TouchableOpacity style={styles.rememberMeWrapper} onPress={this.toggleRememberMe}>
-              <View
-                style={[
-                  styles.circle,
-                  rememberMe ? { backgroundColor: colors.orange, borderWidth: 0 } : null
-                ]}
-              />
-              <CustomText text='Remember me' underneath />
-            </TouchableOpacity>
-            <CustomText text='Forgot Password?' underneath style={{ color: colors.orange }} />
-          </View>
-
-          <CustomButton label='LOGIN' style={styles.loginButton} />
-          <CustomText
-            text='New user?'
-            style={styles.signUpText}
-            onPress={() => navigate('SignupScreen')}
-          >
-            <CustomText text=' Signup' style={{ color: colors.orange }} />
+          <CustomButton label='SIGNUP' style={styles.signUpButton} />
+          <CustomText text='Existing user?' style={styles.signInText}>
+            <CustomText text=' Signin' style={{ color: colors.orange }} />
           </CustomText>
 
           <Svg
