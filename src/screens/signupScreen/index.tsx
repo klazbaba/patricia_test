@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, View, TouchableOpacity, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, Modal, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Form, Item, Label, Input, Icon } from 'native-base';
 
@@ -14,21 +14,28 @@ interface Props {
 
 interface State {
   rememberMe: boolean;
+  showModal: boolean;
 }
 
 export default class SignupScreen extends Component<Props> {
   state: State = {
-    rememberMe: false
+    rememberMe: false,
+    showModal: false
   };
 
   toggleRememberMe = () => this.setState({ rememberMe: !this.state.rememberMe });
 
   render() {
-    const { rememberMe } = this.state;
+    const { rememberMe, showModal } = this.state;
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView
+          contentContainerStyle={[
+            styles.container,
+            showModal ? { backgroundColor: 'rgba(0, 0, 0, 0.2)' } : null
+          ]}
+        >
           <CustomText text='Create your Account' bold />
           <CustomText text="It's free and easy to set up!" style={styles.logInToYourAccount} />
           <Form style={styles.formWrapper}>
@@ -53,7 +60,11 @@ export default class SignupScreen extends Component<Props> {
             </Item>
           </Form>
 
-          <CustomButton label='SIGNUP' style={styles.signUpButton} />
+          <CustomButton
+            label='SIGNUP'
+            style={styles.signUpButton}
+            onPress={() => this.setState({ showModal: true })}
+          />
           <CustomText text='Existing user?' style={styles.signInText}>
             <CustomText text=' Signin' style={{ color: colors.orange }} />
           </CustomText>
@@ -74,6 +85,15 @@ export default class SignupScreen extends Component<Props> {
               fillOpacity={0.192}
             />
           </Svg>
+
+          <Modal
+            animationType='slide'
+            transparent
+            visible={showModal}
+            onRequestClose={() => this.setState({ showModal: !showModal })}
+          >
+            <View style={styles.modalContent}></View>
+          </Modal>
         </ScrollView>
       </SafeAreaView>
     );

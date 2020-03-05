@@ -36,5 +36,15 @@ export const styles = StyleSheet.create({
   signInText: {
     marginTop: 32,
     textAlign: 'center'
+  },
+  modalContent: {
+    backgroundColor: colors.white,
+    borderTopStartRadius: 32,
+    borderTopEndRadius: 32,
+    position: 'absolute',
+    top: '50%',
+    left: 0,
+    right: 0,
+    bottom: 0
   }
 });
