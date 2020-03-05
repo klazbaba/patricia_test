@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import LoginScreen from './screens/loginScreen';
 import SignupScreen from './screens/signupScreen';
 import CartScreen from './screens/cartScreen';
+import RestaurantScreen from './screens/restaurantScreen';
 
 const AuthenticationStack = createStackNavigator(
   {
@@ -18,7 +19,8 @@ const AuthenticationStack = createStackNavigator(
 
 const MainAppStack = createStackNavigator(
   {
-    CartScreen
+    CartScreen,
+    RestaurantScreen
   },
   {
     headerMode: 'none'

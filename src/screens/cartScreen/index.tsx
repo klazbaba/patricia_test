@@ -6,8 +6,14 @@ import CustomText from '../_components/CustomText';
 import CartItem from './_components/CartItem';
 import CustomButton from '../_components/CustomButton';
 
-export default class CartScreen extends Component {
+interface Props {
+  navigation: any;
+}
+
+export default class CartScreen extends Component<Props> {
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.container}>
@@ -50,7 +56,11 @@ export default class CartScreen extends Component {
             <CustomText text='Total:' />
             <CustomText text={`\u20A6 20,000`} style={styles.totalAmount} />
           </View>
-          <CustomButton label='CHECKOUT' style={styles.button} />
+          <CustomButton
+            label='CHECKOUT'
+            style={styles.button}
+            onPress={() => navigate('RestaurantScreen')}
+          />
         </ScrollView>
       </SafeAreaView>
     );
