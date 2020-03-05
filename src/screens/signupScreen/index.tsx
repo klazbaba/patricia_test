@@ -23,6 +23,7 @@ export default class SignupScreen extends Component<Props> {
 
   render() {
     const { showModal } = this.state;
+    const { navigate } = this.props.navigation;
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -88,7 +89,7 @@ export default class SignupScreen extends Component<Props> {
             visible={showModal}
             onRequestClose={() => this.setState({ showModal: !showModal })}
           >
-            <View style={styles.modalContent}>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.modalContent}>
               <View style={styles.notch} />
               <Image source={require('../../images/illustration.png')} />
               <CustomText text='Default Wallet Selection' style={styles.defaultTitle} />
@@ -100,13 +101,14 @@ export default class SignupScreen extends Component<Props> {
                 label='CONFIRM'
                 style={styles.confirmButton}
                 labelStyle={{ color: colors.orange }}
+                onPress={() => navigate('CartScreen')}
               />
               <CustomText
                 text='Click here to cancel'
                 style={styles.cancelText}
                 onPress={() => this.setState({ showModal: false })}
               />
-            </View>
+            </ScrollView>
           </Modal>
         </ScrollView>
       </SafeAreaView>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import LoginScreen from './screens/loginScreen';
 import SignupScreen from './screens/signupScreen';
+import CartScreen from './screens/cartScreen';
 
 const AuthenticationStack = createStackNavigator(
   {
@@ -15,7 +16,17 @@ const AuthenticationStack = createStackNavigator(
   }
 );
 
-const Routes = createAppContainer(AuthenticationStack);
+const MainAppStack = createStackNavigator(
+  {
+    CartScreen
+  },
+  {
+    headerMode: 'none'
+  }
+);
+
+const AppStack = createSwitchNavigator({ AuthenticationStack, MainAppStack });
+const Routes = createAppContainer(AppStack);
 
 export default class App extends Component {
   render() {
