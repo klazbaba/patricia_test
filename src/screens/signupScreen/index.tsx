@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, ScrollView, Modal, View } from 'react-native';
+import { SafeAreaView, ScrollView, Modal, View, Image } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Form, Item, Label, Input, Icon } from 'native-base';
 
@@ -13,20 +13,16 @@ interface Props {
 }
 
 interface State {
-  rememberMe: boolean;
   showModal: boolean;
 }
 
 export default class SignupScreen extends Component<Props> {
   state: State = {
-    rememberMe: false,
     showModal: false
   };
 
-  toggleRememberMe = () => this.setState({ rememberMe: !this.state.rememberMe });
-
   render() {
-    const { rememberMe, showModal } = this.state;
+    const { showModal } = this.state;
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -92,7 +88,25 @@ export default class SignupScreen extends Component<Props> {
             visible={showModal}
             onRequestClose={() => this.setState({ showModal: !showModal })}
           >
-            <View style={styles.modalContent}></View>
+            <View style={styles.modalContent}>
+              <View style={styles.notch} />
+              <Image source={require('../../images/illustration.png')} />
+              <CustomText text='Default Wallet Selection' style={styles.defaultTitle} />
+              <CustomText
+                text='If you proceed, All cards transactions will be charged from the selected wallet.'
+                style={styles.description}
+              />
+              <CustomButton
+                label='CONFIRM'
+                style={styles.confirmButton}
+                labelStyle={{ color: colors.orange }}
+              />
+              <CustomText
+                text='Click here to cancel'
+                style={styles.cancelText}
+                onPress={() => this.setState({ showModal: false })}
+              />
+            </View>
           </Modal>
         </ScrollView>
       </SafeAreaView>

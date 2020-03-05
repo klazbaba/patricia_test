@@ -1,5 +1,6 @@
 import { Text, StyleSheet, TextProperties } from 'react-native';
 import React, { ReactElement } from 'react';
+import { colors } from '../../colors';
 
 interface Props extends TextProperties {
   text: string;
@@ -28,6 +29,7 @@ export default function CustomText(props: Props) {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 16
+    fontSize: 16,
+    color: colors.text
   }
 });

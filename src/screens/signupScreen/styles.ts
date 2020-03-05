@@ -39,12 +39,40 @@ export const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: colors.white,
-    borderTopStartRadius: 32,
-    borderTopEndRadius: 32,
+    borderTopStartRadius: 24,
+    borderTopEndRadius: 24,
     position: 'absolute',
-    top: '50%',
+    top: '40%',
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
+    alignItems: 'center',
+    padding: 16
+  },
+  notch: {
+    width: 40,
+    height: 5,
+    backgroundColor: colors.lightgrey,
+    borderRadius: 2,
+    marginBottom: 16
+  },
+  defaultTitle: {
+    marginTop: 16,
+    fontWeight: '600'
+  },
+  description: {
+    marginTop: 16,
+    textAlign: 'center',
+    color: colors.faintText
+  },
+  confirmButton: {
+    backgroundColor: colors.lightOrange,
+    alignSelf: 'stretch',
+    marginTop: 32,
+    elevation: 0
+  },
+  cancelText: {
+    color: colors.orange,
+    marginTop: 32
   }
 });
